@@ -22,6 +22,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+# Devise to handle user authentication. Read more: https://github.com/plataformatec/devise
+gem 'devise'
+# Print ruby objects with color and inddentation. Read more: https://github.com/awesome-print/awesome_print
+gem 'awesome_print'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
