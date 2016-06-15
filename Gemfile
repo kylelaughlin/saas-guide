@@ -26,7 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 # Print ruby objects with color and inddentation. Read more: https://github.com/awesome-print/awesome_print
 gem 'awesome_print'
-
+# Figaro handles ENV variables. Read more: https://github.com/laserlemon/figarobundle exec figaro install
+gem "figaro"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
