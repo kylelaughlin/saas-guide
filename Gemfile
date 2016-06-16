@@ -31,7 +31,7 @@ gem "figaro"
 # Sidkiq for background processes
 gem 'sidekiq'
 # For sending emails in the background. Read More: https://github.com/mhfs/devise-async
-
+gem 'devise-async'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

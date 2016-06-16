@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable
+         :confirmable, :async
 
   validate :email_is_unique, on: :create
   after_create :create_account
@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
 #    opts = pending_reconfirmation? ? { to: unconfirmed_email } : { }
 #    send_devise_notification(:confirmation_instructions, opts)
 #  end
+
+def send_devise_notification(notification, *args)
+  devise_mailer.send(notification, self, *args).deliver_later
+end
 
   private
 
