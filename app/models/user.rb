@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable
 
   validate :email_is_unique, on: :create
   after_create :create_account
@@ -10,6 +11,20 @@ class User < ActiveRecord::Base
   #def confirmation_required?
   #  false
   #end
+
+  #def send_devise_notification(notification, one, two)
+  #  byebug
+  #  devise_mailer.send(notification, self).deliver
+  #end
+
+  #def send_confirmation_instructions
+  #  unless @raw_confirmation_token
+  #    generate_confirmation_token!
+  #  end
+#
+#    opts = pending_reconfirmation? ? { to: unconfirmed_email } : { }
+#    send_devise_notification(:confirmation_instructions, opts)
+#  end
 
   private
 

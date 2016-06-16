@@ -28,6 +28,10 @@ gem 'devise'
 gem 'awesome_print'
 # Figaro handles ENV variables. Read more: https://github.com/laserlemon/figarobundle exec figaro install
 gem "figaro"
+# Sidkiq for background processes
+gem 'sidekiq'
+# For sending emails in the background. Read More: https://github.com/mhfs/devise-async
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
