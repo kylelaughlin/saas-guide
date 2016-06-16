@@ -8,27 +8,10 @@ class User < ActiveRecord::Base
   validate :email_is_unique, on: :create
   after_create :create_account
 
-  #def confirmation_required?
-  #  false
-  #end
-
-  #def send_devise_notification(notification, one, two)
-  #  byebug
-  #  devise_mailer.send(notification, self).deliver
-  #end
-
-  #def send_confirmation_instructions
-  #  unless @raw_confirmation_token
-  #    generate_confirmation_token!
-  #  end
-#
-#    opts = pending_reconfirmation? ? { to: unconfirmed_email } : { }
-#    send_devise_notification(:confirmation_instructions, opts)
-#  end
-
-def send_devise_notification(notification, *args)
-  devise_mailer.send(notification, self, *args).deliver_later
-end
+  #Override devise method to integrate with devise-async with user token
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 
   private
 
@@ -41,6 +24,7 @@ end
     end
   end
 
+  #Create an account everytime a user registers
   def create_account
     account = Account.new(:email => email)
     account.save!
