@@ -34,7 +34,8 @@ gem 'sidekiq'
 gem 'devise-async'
 # Puma for Web Server
 gem 'puma'
-
+# Bootstrap sass for styling. Read more: https://github.com/twbs/bootstrap-sass
+gem 'bootstrap-sass'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
