@@ -36,6 +36,8 @@ gem 'devise-async'
 gem 'puma'
 # Bootstrap sass for styling. Read more: https://github.com/twbs/bootstrap-sass
 gem 'bootstrap-sass'
+# Simple form to help simplify writing forms with bootstrap. Read more: https://github.com/plataformatec/simple_form
+gem 'simple_form'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
