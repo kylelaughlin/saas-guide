@@ -38,6 +38,8 @@ gem 'puma'
 gem 'bootstrap-sass'
 # Simple form to help simplify writing forms with bootstrap. Read more: https://github.com/plataformatec/simple_form
 gem 'simple_form'
+# Stripe to handle subscription payments. Read more: https://github.com/stripe/stripe-ruby
+gem 'stripe'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -62,3 +64,5 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
+ruby "2.3.1"
