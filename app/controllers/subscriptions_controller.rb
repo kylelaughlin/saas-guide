@@ -63,7 +63,7 @@ class SubscriptionsController < ApplicationController
     current_account = Account.find_by_email(current_user.email)
     customer_id     = current_account.customer_id
     current_plan = current_account.stripe_plan_id
-    byebug
+    
     if current_plan.blank?
       raise "No plan found to unsubscribe/cancel"
     end
