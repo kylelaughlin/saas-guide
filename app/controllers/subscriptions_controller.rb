@@ -30,7 +30,7 @@ class SubscriptionsController < ApplicationController
 
       subscriptions     = @customer.subscriptions
       @subscribed_plan  = subscriptions.data.find{ |o| o.plan.id == plan }
-      
+
     else
       #Customer exists - get customer from stripe
       @customer         = Stripe::Customer.retrieve(customer_id)
@@ -58,6 +58,40 @@ class SubscriptionsController < ApplicationController
 
   end
 
+  def cancel_subscription
+    email           = current_user.email
+    current_account = Account.find_by_email(current_user.email)
+    customer_id     = current_account.customer_id
+    current_plan = current_account.stripe_plan_id
+    byebug
+    if current_plan.blank?
+      raise "No plan found to unsubscribe/cancel"
+    end
+
+    #Fetch customer from Stripe
+    customer = Stripe::Customer.retrieve(customer_id)
+
+    #Get custome's subscriptions
+    subscriptions = customer.subscriptions
+
+    #Find the subscription that we want to cancel_subscription
+    current_subscribed_plan = subscriptions.data.find { |o| o.plan.id == current_plan }
+
+    if current_subscribed_plan.blank?
+      raise "Subscription not found!"
+    end
+
+    # Delete the subscriptions
+    current_subscribed_plan.delete
+
+    #update account model
+    save_account_details(current_account, "", customer_id, Time.at(0).to_datetime)
+
+    @message = "Subscription cancelled successfully"
+
+  rescue => e
+    redirect_to "/subscriptions", :flash => {:error => e.message}
+  end
 
 
   def save_account_details(account, plan, customer_id, active_until)
