@@ -63,7 +63,7 @@ class SubscriptionsController < ApplicationController
     current_account = Account.find_by_email(current_user.email)
     customer_id     = current_account.customer_id
     current_plan = current_account.stripe_plan_id
-    
+
     if current_plan.blank?
       raise "No plan found to unsubscribe/cancel"
     end
@@ -91,6 +91,29 @@ class SubscriptionsController < ApplicationController
 
   rescue => e
     redirect_to "/subscriptions", :flash => {:error => e.message}
+  end
+
+  def update_card
+
+  end
+
+  def update_card_details
+    #Take the token given by stripe and set it on customer
+    token           = params[:stripeToken]
+    #Get customer_id
+    current_account = Account.find_by_email(current_user.email)
+    customer_id     = current_account.customer_id
+    #Get customer from stripe
+    customer = Stripe::Customer.retrieve(customer_id)
+    #set value of source to token
+    customer.source = token
+    customer.save
+
+    redirect_to "/subscriptions", :notice => "Card updated successfully"
+
+  rescue => e
+    redirect_to :action => "update_card", :flash => {:error => e.message}
+
   end
 
 

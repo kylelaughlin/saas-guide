@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :weather_grid
 
+  get "/subscriptions/update_card" => "subscriptions#update_card"
+  post "/subscriptions/update_card_details" => "subscriptions_update_card_details"
+
   get "/subscriptions/cancel_subscription" => "subscriptions#cancel_subscription"
   resources :subscriptions
   # The priority is based upon order of creation: first created -> highest priority.
