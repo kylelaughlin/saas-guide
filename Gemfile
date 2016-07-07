@@ -40,6 +40,8 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 # Stripe to handle subscription payments. Read more: https://github.com/stripe/stripe-ruby
 gem 'stripe'
+# For processing stripe events
+gem 'stripe_event'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -55,6 +57,8 @@ gem 'rails_12factor', group: :production
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  # allow web hooks to local host
+  gem 'ultrahook'
 end
 
 group :development do
